@@ -1,0 +1,5 @@
+<ul>
+  {{ range .Site.Data.blogrolls.recommendations }}
+    <li><a href="{{ .url }}">{{ .name }}: <span>{{ (urls.Parse .url).Hostname }}</span></a></li>
+  {{ end }}
+</ul>
