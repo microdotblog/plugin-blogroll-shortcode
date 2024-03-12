@@ -1,5 +1,14 @@
-<ul>
-  {{ range .Site.Data.blogrolls.recommendations }}
-    <li><a href="{{ .url }}">{{ .name }}: <span>{{ (urls.Parse .url).Hostname }}</span></a></li>
+<ul class="blogroll">
+  {{ if .Get "name" }}
+  	{{ $name := .Get "name" }}
+    {{ with index $.Site.Data.blogrolls $name }}
+      {{ range . }}
+        <li><a href="{{ .url }}">{{ .name }}: <span>{{ (urls.Parse .url).Hostname }}</span></a></li>
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    {{ range .Site.Data.blogrolls.recommendations }}
+      <li><a href="{{ .url }}">{{ .name }}: <span>{{ (urls.Parse .url).Hostname }}</span></a></li>
+    {{ end }}
   {{ end }}
 </ul>
