@@ -1,6 +1,7 @@
 <ul class="blogroll">
   {{ if .Get "name" }}
   	{{ $name := .Get "name" }}
+    {{ $name := $name | replace " " "_" | lower }}
     {{ with index $.Site.Data.blogrolls $name }}
       {{ range . }}
         <li><a href="{{ .url }}">{{ .name }}: <span>{{ (urls.Parse .url).Hostname }}</span></a></li>
