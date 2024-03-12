@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.2.1",
   "title": "Blogroll shortcode",
   "description": "A new shortcode to include recommendations on your blog.",
   "includes": [
