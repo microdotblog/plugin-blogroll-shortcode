@@ -1,15 +1,17 @@
 <ul class="blogroll">
+  {{ $show_hostname := .Get "show_hostname" }}
+  {{ $show_about := .Get "show_about" }}
   {{ if .Get "name" }}
     {{ $name := .Get "name" }}
     {{ $filename := (replace $name " " "-") | lower }}
     {{ with index $.Site.Data.blogrolls $filename }}
       {{ range . }}
-        <li><a href="{{ .url }}">{{ .name }}: <span>{{ (urls.Parse .url).Hostname }}</span></a></li>
+        <li><a href="{{ .url }}">{{ .name }}{{ if $show_hostname }}: <span>{{ (urls.Parse .url).Hostname }}</span>{{ end }}</a>{{ if $show_about }}<div class="blogroll_about">{{ .about }}</div>{{ end }}</li>
       {{ end }}
     {{ end }}
   {{ else }}
     {{ range .Site.Data.blogrolls.recommendations }}
-      <li><a href="{{ .url }}">{{ .name }}: <span>{{ (urls.Parse .url).Hostname }}</span></a></li>
+      <li><a href="{{ .url }}">{{ .name }}{{ if $show_hostname }}: <span>{{ (urls.Parse .url).Hostname }}</span>{{ end }}</a>{{ if $show_about }}<div class="blogroll_about">{{ .about }}</div>{{ end }}</li>
     {{ end }}
   {{ end }}
 </ul>
